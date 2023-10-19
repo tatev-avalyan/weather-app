@@ -1,6 +1,6 @@
 import { useSelector as useS, useDispatch as useD } from "react-redux";
 import { TypedUseSelectorHook } from "react-redux";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { weatherReducer } from "./reducers/weatherReducer";
 
 const store = createStore(weatherReducer);

@@ -1,10 +1,10 @@
-import { WeatherData } from "../../types/types";
+import { WeatherData } from "../../types";
 
 const initialState: WeatherData = {
-  defaultCity: "Yerevan",
-  currWeatherData: null,
+  defaultCity: "Abovyan",
+  currentWeatherData: null,
   dailyWeatherData: null,
-  tmpType: "metric",
+  temperatureType: "metric",
   isFound: true,
   selectedDay: new Date().getDay(),
 };
@@ -17,12 +17,12 @@ export const weatherReducer = (
     case "getDefault":
       return {
         ...state,
-        currWeatherData: action.data,
+        currentWeatherData: action.data,
       };
     case "setTemperatureType":
       return {
         ...state,
-        tmpType: action.tmpType,
+        temperatureType: action.temperatureType,
       };
     case "getDailyData":
       return {

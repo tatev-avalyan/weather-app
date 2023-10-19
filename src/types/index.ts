@@ -10,9 +10,9 @@ interface DailyData {
 }
 
 export interface WeatherData {
-  defaultCity: "Yerevan";
-  currWeatherData: IData | null;
-  tmpType: TypeTmp;
+  defaultCity: "Abovyan";
+  currentWeatherData: IData | null;
+  temperatureType: TypeTmp;
   dailyWeatherData: DailyData | null;
   isFound: boolean;
   selectedDay: number;

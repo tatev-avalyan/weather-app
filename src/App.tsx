@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
 import { useDispatch, useSelector } from "./redux";
+import { getWeather } from "./helpers";
 import Layout from "./components/Layout";
-import { getWeatherData } from "./utils/getWeatherData";
+import "../src/styles/index.css";
 
-function App() {
+const App = () => {
   const defaultCity = useSelector((state) => state.defaultCity);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getWeatherData(defaultCity, dispatch);
+    getWeather(defaultCity, dispatch);
   }, []);
 
   return (

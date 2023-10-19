@@ -4,9 +4,9 @@ import DailyWeather from "./DailyWeather";
 import DayList from "./DayList";
 
 const Main = () => {
-  const hasData = useSelector((state) => !!state.currWeatherData);
+  const isDataFound = useSelector((state) => state.currentWeatherData);
 
-  if (!hasData) return <h1>Loading...</h1>;
+  if (!isDataFound) return <div>Loading...</div>;
 
   return (
     <main>

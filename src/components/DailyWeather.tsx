@@ -1,26 +1,26 @@
 import { useEffect } from "react";
-import { getDailyWeatherData } from "../utils/getDailyWeatherData";
+import { getTemperatureTypeSymbol, getWeathersList } from "../helpers";
 import { useDispatch, useSelector } from "../redux";
 
 const DailyWeather = () => {
   const dispatch = useDispatch();
-  const city = useSelector((state) => state.currWeatherData?.name) as string;
-  const type = useSelector((state) => state.tmpType);
+  const city = useSelector((state) => state.currentWeatherData?.name);
+  const type = useSelector((state) => state.temperatureType);
   const dailyWeatherData = useSelector((state) => state.dailyWeatherData);
   const selectedDay = useSelector((state) => state.selectedDay);
-
-  const currSymbol = type === "imperial" ? "°F" : "°C";
-  const tempByType = currSymbol === "°C" ? 1 : 0;
+  const currSymbol = getTemperatureTypeSymbol(type)
+  const tempByType = type === "metric" ? 1 : 0;
 
   useEffect(() => {
-    city && getDailyWeatherData(city, dispatch);
+    if(!city) return
+
+    getWeathersList(city, dispatch);
   }, []);
 
   return (
     <div className="weather-by-time">
       <ul>
-        {dailyWeatherData?.list &&
-          dailyWeatherData?.list
+        {dailyWeatherData?.list
             .filter((item) => new Date(item.dt * 1000).getDay() === selectedDay)
             .slice(1, 6)
             .map((item, i) => {

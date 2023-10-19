@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "../redux";
-import { TypeTmp } from "../types/types";
-import { getWeatherData } from "../utils/getWeatherData";
-import { getDailyWeatherData } from "../utils/getDailyWeatherData";
+import { TypeTmp } from "../types";
+import { getWeather, getWeathersList } from "../helpers";
 
 const Header = () => {
-  const tmpType = useSelector((state) => state.tmpType);
+  const temperatureType = useSelector((state) => state.temperatureType);
   const dispatch = useDispatch();
   const [cityValue, setCityValue] = useState("");
 
-  const toggleChange = (tmpType: TypeTmp) => {
-    dispatch({ type: "setTemperatureType", tmpType });
-  };
+  const toggleChange = (temperatureType: TypeTmp) => dispatch({ type: "setTemperatureType", temperatureType });
 
   const handleSearch = () => {
     if (!cityValue) return;
-    getWeatherData(cityValue, dispatch);
-    getDailyWeatherData(cityValue, dispatch);
+    getWeather(cityValue, dispatch);
+    getWeathersList(cityValue, dispatch);
   };
 
   return (
@@ -37,7 +34,7 @@ const Header = () => {
           <input
             type="radio"
             value="F"
-            checked={tmpType === "imperial"}
+            checked={temperatureType === "imperial"}
             onChange={() => toggleChange("imperial")}
           />
           <label htmlFor="F">°F</label>
@@ -46,7 +43,7 @@ const Header = () => {
           <input
             type="radio"
             value="C"
-            checked={tmpType === "metric"}
+            checked={temperatureType === "metric"}
             onChange={() => toggleChange("metric")}
           />
           <label htmlFor="C">°C</label>

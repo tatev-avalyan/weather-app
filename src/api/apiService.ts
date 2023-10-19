@@ -21,6 +21,6 @@ const http = {
               })
         }
     }
-
 }
-export default http
+
+export default http;

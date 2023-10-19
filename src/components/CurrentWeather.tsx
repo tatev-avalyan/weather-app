@@ -1,10 +1,10 @@
 import { useSelector } from "../redux";
-import { IData } from "../types/types";
+import { IData } from "../types";
 
 const CurrentWeather = () => {
-  const data = useSelector((state) => state.currWeatherData) as IData;
+  const data = useSelector((state) => state.currentWeatherData) as IData;
   const currSymbol =
-    useSelector((state) => state.tmpType) === "imperial" ? "°F" : "°C";
+    useSelector((state) => state.temperatureType) === "imperial" ? "°F" : "°C";
 
   const number = Number(data.main?.temp);
   const tempByType =
